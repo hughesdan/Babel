@@ -12,7 +12,8 @@ exports.image = function(req, res) {
             console.log(req.url);
             var urlObj = url.parse(req.url, true);
              var quantity = parseInt(urlObj.query["quantity"]);
-        model.getImages(quantity, function(err, images) {
+             var audioLanguage = urlObj.query["language"];
+            model.getImages(quantity, audioLanguage, function(err, images) {
             return res.send(images);        
         });
     }
@@ -33,7 +34,8 @@ exports.image = function(req, res) {
         
         var imageFileName = req.body.imageFileName;
         var user = req.body.user;
-        model.saveImage(imageFileName, user);
+        var usrLanguagePref = req.body.userLanguagePref;
+        model.saveImage(imageFileName, user, usrLanguagePref);
     }
 };
 
@@ -52,6 +54,41 @@ exports.audio = function(req, res) {
         var lang = req.body.lang;
         
         model.saveAudio(image, user, audio, lang);
+
+    }
+};
+
+exports.user = function(req, res) {
+        if (req.method == 'GET') {
+
+    }
+
+    else if (req.method == 'POST') {
+        
+        var urlObj = url.parse(req.url, true);
+        var userID = req.body.user;
+        var nativeLanguage = req.body.nativeLanguage;
+        var learnLanguage = req.body.learnLanguage;
+        
+        model.saveUser(userID, nativeLanguage, learnLanguage);
+
+    }
+};
+
+exports.queue = function(req, res) {
+        if (req.method == 'GET') {
+            var urlObj = url.parse(req.url, true);
+            var quantity = parseInt(urlObj.query["quantity"]);
+            var language = urlObj.query["language"];
+            model.getImages(quantity, language, function(err, images) {
+            return res.send(images);
+            });
+
+    }
+
+    else if (req.method == 'POST') {
+        
+
 
     }
 };
