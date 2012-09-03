@@ -87,14 +87,14 @@ var saveAudio = function(image, usr, audio, lang) {
 
 exports.saveAudio = saveAudio;
 
-var saveUser = function(userID, nativeLanguage, learnLanguage) {
+var saveUser = function(userID, nativeLanguage, learnLanguage, emailAddress) {
 
         var usersCollection = db.collection('Users');
         var User = {};
         User.userID = userID;
         User.nativeLanguage = nativeLanguage;
         User.learnLanguage = learnLanguage;
-        User.headShot = userID;
+        User.emailAddress = emailAddress;
         User.date = new Date();
         usersCollection.save(User);
 

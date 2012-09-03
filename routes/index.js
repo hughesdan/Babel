@@ -69,8 +69,9 @@ exports.user = function(req, res) {
         var userID = req.body.user;
         var nativeLanguage = req.body.nativeLanguage;
         var learnLanguage = req.body.learnLanguage;
+        var emailAddress = req.body.emailAddress;
         
-        model.saveUser(userID, nativeLanguage, learnLanguage);
+        model.saveUser(userID, nativeLanguage, learnLanguage, emailAddress);
 
     }
 };
